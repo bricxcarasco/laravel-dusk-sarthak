@@ -2,13 +2,15 @@
 
 namespace Tests\Browser;
 
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class RegisterTest extends DuskTestCase
 {
-    use DatabaseMigrations;
+    use DatabaseMigrations, DatabaseTransactions;
+
     /**
      * A Dusk test example.
      *
@@ -24,7 +26,7 @@ class RegisterTest extends DuskTestCase
                 ->type('password', 'secret')
                 ->type('password_confirmation', 'secret')
                 ->press('Register')
-                ->assertPathIs('/home');
+                ->assertPathIs('/homes');
         });
     }
 }
